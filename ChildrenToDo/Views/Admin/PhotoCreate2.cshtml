@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ChildrenToDo.Models.tBanner>
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<h2 class="text-center">新增多張 幼兒園相片</h2>
+
+<h6>@ViewBag.photo</h6>
+
+<form method="post" enctype="multipart/form-data" action="/Admin/PhotoCreate2">
+    <div class="form-group">
+        <label for="PClass">請選擇相簿</label>
+        <div class="col-md-10">
+            <select class="form-control" id="PClass" name="PClass">
+                <option value="1">校外教學</option>
+                <option value="2">生活紀錄</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="photos">請選擇上傳檔案</label>
+        <input type="file" multiple class="form-control-file" id="photos" name="photos">
+    </div>
+    <input type="submit" value="確認上傳" class="btn btn-danger mt-3" />
+</form>
+
+@if (TempData["msg"] != null)
+{
+    <script>
+        swal("Good job!", "@TempData["msg"]" , "success");
+    </script>
+}

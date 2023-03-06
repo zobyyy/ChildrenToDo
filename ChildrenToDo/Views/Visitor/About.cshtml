@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ChildrenToDo.Models.tAbout>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="container text-center" style="position: relative; margin-bottom:365px">
+    <h2 style="margin-bottom:30px;">關於我們</h2>
+    <div class="row row-cols-1 row-cols-md-2" style="text-align:center;">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card h-100 border-0">
+                    <div class="front">
+                        <img src="@item.APath" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.ATitle</h5>
+                            <p class="card-text">@item.AsubTitle</p>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.ATitle</h5>
+                            <p class="card-text">@item.AContent</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }        
+    </div>
+</div>

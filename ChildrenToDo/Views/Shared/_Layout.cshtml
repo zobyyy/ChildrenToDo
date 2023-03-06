@@ -1,0 +1,67 @@
+﻿@{
+    string actionName = ViewContext.RouteData.GetRequiredString("action");
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幼稚園</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <div class="container mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd">
+            <!-- Image and text -->
+            <nav class="navbar navbar-light">
+                <a class="navbar-brand" href="#">
+                    <img src="~/Icon/boy.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                </a>
+            </nav>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link @(actionName == "Index" ? "active" :"")" href="/Visitor/Index">首頁 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(actionName == "News" ? "active" :"")" href="/Visitor/News">所有消息</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(actionName == "About" ? "active" :"")" href="/Visitor/About">關於我們</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            活動相簿
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/Visitor/Album_school">校外教學</a>
+                            <a class="dropdown-item" href="/Visitor/Album_life">生活紀錄</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(actionName == "Contact" ? "active" :"")" href="/Visitor/Contact">聯絡我們</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link @(actionName == "LogIn" ? "active" :"")" href="/Admin/LogIn">教師專區</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer class="text-center">
+            <p>&copy; @DateTime.Now - 虎尾幼兒園</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

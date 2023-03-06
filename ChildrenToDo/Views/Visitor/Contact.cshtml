@@ -1,0 +1,82 @@
+﻿@model ChildrenToDo.Models.tContact
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<div class="contact">
+    <div class="map_infor">
+        <div class="map col-md-8">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3653.254114690417!2d120.42730081402189!3d23.70261779651901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346eba072ee22f11%3A0x558aed05907207d7!2z5ZyL56uL6JmO5bC-56eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1622924288623!5m2!1szh-TW!2stw" width="715" height="300" style="border:dashed 4px; border-radius:25px; border-color:lightsalmon; margin-left:-15px" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="infor col-md-4">
+            <div class="contactcard mb-3" style="text-align: center; width: 300px; height: 300px; margin-left: 30px; border-radius: 25px; border:dashed 4px; border-color:lightsalmon">
+                <div class="card-header" style="border-bottom:3px dashed lightsalmon; border-radius:25px 25px 0px 0px">聯絡資訊</div>
+                <div class="card-body text-secondary">
+                    <ul style="text-align:left; margin-top:35px; margin-left:0px; list-style:none;">
+                        <li>地址： 632雲林縣虎尾鎮文化路64號</li>
+                        <li>電話： 05 - 123 4567</li>
+                        <li>Mail： xxx@gm.nfu.edu.tw</li>
+                        <li>Line： Formosa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<hr style="border: dashed 2px; border-color:lightsalmon; margin:20px auto;"/>*@
+    <div class="feedback" style="text-align:center">
+        <form method="post" action="/Visitor/Contact" autocomplete="on" class="col-md-6 col-md-offset-3" style="border:4px dashed lightsalmon; border-radius:25px; margin:auto; text-align:center; padding-top:20px">
+            <!--autocomplete自動輸入功能，測試完就切回off-->
+            <div class="form-group" style="justify-content:center; align-items:center;">
+                <label>姓名</label>
+                <div>
+                    @Html.EditorFor(model => model.CName, new { htmlAttributes = new { @class = "form-control", required = "required", @placeholder = "王大明" } })
+                    @Html.ValidationMessageFor(model => model.CName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label>電話</label>
+                <div>
+                    @Html.EditorFor(model => model.CPhone, new { htmlAttributes = new { @class = "form-control", required = "required", @placeholder = "0912345678", type = "tel", maxlength = "10" } })
+                    @Html.ValidationMessageFor(model => model.CPhone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label>信箱</label>
+                <div>
+                    @Html.EditorFor(model => model.CMail, new { htmlAttributes = new { @class = "form-control", required = "required", @placeholder = "xxx@gmail.com", type = "email" } })
+                    @Html.ValidationMessageFor(model => model.CMail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label>主題</label>
+                <div>
+                    @Html.EditorFor(model => model.CTitle, new { htmlAttributes = new { @class = "form-control", required = "required", @placeholder = "主題", type = "text" } })
+                    @Html.ValidationMessageFor(model => model.CTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label>內容</label>
+                <div>
+                    @Html.TextAreaFor(model => model.CContent, new { @class = "form-control", required = "required", rows = "5", @placeholder = "寫點什麼......." })
+                    @Html.ValidationMessageFor(model => model.CContent, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="送出" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@if (TempData["msg"] != null)
+{
+    <script>
+        swal("Good job!", "@TempData["msg"]", "success");
+    </script>
+}

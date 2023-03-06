@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ChildrenToDo.Models.tPhoto>
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int no = 1;
+    string PClass = "";
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<h2 class="text-center">相片列表</h2>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<table class="table text-center table-striped table-bordered">
+    <tr>
+        <th style="text-align:center">
+            編號
+        </th>
+        <th style="text-align:center">
+            相簿
+        </th>
+        <th style="text-align:center">
+            建立日期
+        </th>
+        <th>功能</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if(item.PClass == "1")
+        {
+            PClass = "校外教學";
+        }
+        else
+        {
+            PClass = "生活紀錄";
+        }
+        <tr>
+            <td>
+                @no
+            </td>
+            <td>
+                @PClass
+            </td>
+            <td>
+                @DateTime.Parse(item.PDate.ToString()).ToString("yyyy  年  M  月  d   日")
+            </td>
+            <td>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#banner@(no)">
+                    預覽
+                </button> <span>|</span>
+                @Html.ActionLink("刪除", "PhotoDelete", new { id = item.PId }, new { onclick = "return confirm('提示:\\n\\n您是否確定刪除?');", @class = "btn btn-danger" })
+
+            </td>
+        </tr>
+
+        <div class="modal fade" id="banner@(no)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">@PClass</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="@item.P_Path" class="img-fluid" alt="Alternate Text" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        no = no + 1;
+
+
+    }
+
+</table>
+
+@if (TempData["msg"] != null)
+{
+    <script>
+        swal("Good job!", "@TempData["msg"]", "success");
+    </script>
+}

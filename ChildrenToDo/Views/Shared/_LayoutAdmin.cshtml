@@ -1,0 +1,90 @@
+﻿@{
+    string actionName = ViewContext.RouteData.GetRequiredString("action");
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幼稚園</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <div class="container mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd">
+            <!-- Image and text -->
+            <nav class="navbar navbar-light">
+                <a class="navbar-brand" href="#">
+                    <img src="~/Icon/boy.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                </a>
+            </nav>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            最新消息
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/Admin/NewsIndex">消息列表</a>
+                            <a class="dropdown-item" href="/Admin/NewsCreate">發布消息</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(actionName == "AboutIndex" ? "active" :"")" href="/Admin/AboutIndex">關於我們</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            相簿管理
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/Admin/PhotoIndex">相簿列表</a>
+                            <a class="dropdown-item" href="/Admin/PhotoCreate">新增相片</a>
+                            <a class="dropdown-item" href="/Admin/PhotoCreate2">新增多張相片</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(actionName == "ContactIndex" ? "active" :"")" href="/Admin/ContactIndex">聯絡我們</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            看板管理
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/Admin/BannerIndex">看板列表</a>
+                            <a class="dropdown-item" href="/Admin/BannerCreate">發布看板</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Session["AName"] 老師，您好！
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/Admin/AdminIndex">帳號管理</a>
+                            <a class="dropdown-item" href="/Admin/AdminEdit">修改帳號</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(actionName == "LogOut" ? "active" :"")" href="/Admin/LogOut">登出</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now - 虎尾幼兒園</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

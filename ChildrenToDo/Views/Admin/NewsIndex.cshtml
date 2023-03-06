@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ChildrenToDo.Models.tNews>
+
+@{
+    
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int no = 1;
+
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<h2>最新消息</h2>
+<div style="height:15px"></div>
+@Html.ActionLink("新增消息","NewsCreate")
+<table class="newstable table-striped text-center" style="table-layout: fixed">
+    <tr>
+        <th style="width:10%; height:50px">
+            編號
+        </th>
+        <th style="width:15%">
+            標題
+        </th>
+        <th style="width:30%">
+            內容
+        </th>
+        <th style="width:15%">
+            日期
+        </th>
+        <th style="width:10%">
+            附件檔案
+        </th>
+        <th style="width:15%">功能</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(no++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NTitle)
+            </td>
+            <td>
+                @if (item.NContent.Length > 20)
+                {
+                    <span style="overflow:scroll; max-height:80px; min-height:50px; display: block">
+                        @Html.DisplayFor(modelItem => item.NContent)
+                    </span>
+                }
+                else
+                {
+                    <span style="overflow: hidden; max-height: 50px; min-height: 50px; display: block">
+                        @Html.DisplayFor(modelItem => item.NContent)
+                    </span>
+                }
+
+
+            </td>
+            <td>
+                @DateTime.Parse(item.NDate.ToString()).ToString("yyyy  年  M  月  d   日")
+            </td>
+            <td>
+                @if (item.Nfile_path == "無")
+                {
+                    @item.Nfile_path
+                }
+                else
+                {
+                    <a href="@item.Nfile_path">下載</a>
+
+                }
+            </td>
+            <td>
+                @Html.ActionLink("修改", "NewsEdit", new { id = item.NId }, new { @class = "btn btn-primary" }) <span>|</span>
+                @Html.ActionLink("刪除", "NewsDelete", new { id = item.NId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (TempData["msg"] != null)
+{
+    <script>
+        swal("Good job!", "@TempData["msg"]", "success");
+    </script>
+}

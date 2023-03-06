@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ChildrenToDo.Models.tNews>
+
+@{
+    var banner = ViewBag.banner as IEnumerable<ChildrenToDo.Models.tBanner>;
+    var firstItem = banner.First();
+
+    var news = ViewBag.news as IEnumerable<ChildrenToDo.Models.tNews>;
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="carouselExampleCaptions" class="my-3 carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        @for (var i = 0; i < banner.Count(); i++)
+        {
+            <li data-target="#carouselExampleCaptions" data-slide-to="@i" @(i == 0 ? "class=\"active\"" : "")></li>
+        }
+        <!--class = "active" 起始頁面的意思-->
+    </ol>
+    <div class="carousel-inner">
+        @foreach (var item in banner)
+        {
+            <div class="carousel-item @(item.Equals(firstItem) ? "active" : "")">
+                <img src="@item.bann_filePath" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>@item.bann_Title</h5>
+                </div>
+            </div>
+        }
+
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+<a class="nav-link" href="/Visitor/News"  style="margin-top:20px">更多最新消息</a>
+<table class="table table-striped text-center">
+    <tr>
+        <th>
+            標題
+        </th>
+        <th>
+            日期
+        </th>
+    </tr>
+
+@foreach (var item in news) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NDate)
+        </td>
+    </tr>
+}
+
+</table>

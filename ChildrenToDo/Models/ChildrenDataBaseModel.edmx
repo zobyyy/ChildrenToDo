@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ChildrenDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tAbout">
+          <Key>
+            <PropertyRef Name="AId" />
+          </Key>
+          <Property Name="AId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ATitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="AContent" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ADate" Type="datetime" />
+          <Property Name="APeople" Type="nvarchar" MaxLength="50" />
+          <Property Name="AsubTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="APath" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tAdmin">
+          <Key>
+            <PropertyRef Name="AId" />
+          </Key>
+          <Property Name="AId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ALogin" Type="nvarchar" MaxLength="50" />
+          <Property Name="APwd" Type="nvarchar" MaxLength="50" />
+          <Property Name="AName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tBanner">
+          <Key>
+            <PropertyRef Name="bann_Id" />
+          </Key>
+          <Property Name="bann_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bann_Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="bann_subTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="bann_filePath" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tContact">
+          <Key>
+            <PropertyRef Name="CId" />
+          </Key>
+          <Property Name="CId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CName" Type="nvarchar" MaxLength="10" />
+          <Property Name="CPhone" Type="nvarchar" MaxLength="10" />
+          <Property Name="CMail" Type="nvarchar" MaxLength="30" />
+          <Property Name="CTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="CContent" Type="nvarchar" MaxLength="500" />
+          <Property Name="CDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tNews">
+          <Key>
+            <PropertyRef Name="NId" />
+          </Key>
+          <Property Name="NId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="NContent" Type="nvarchar" MaxLength="1000" />
+          <Property Name="NDate" Type="datetime" />
+          <Property Name="Nfile_path" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tPhoto">
+          <Key>
+            <PropertyRef Name="PId" />
+          </Key>
+          <Property Name="PId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PClass" Type="nvarchar" MaxLength="50" />
+          <Property Name="PDate" Type="datetime" />
+          <Property Name="P_Path" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityContainer Name="ChildrenDatabaseModelStoreContainer">
+          <EntitySet Name="tAbout" EntityType="Self.tAbout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tAdmin" EntityType="Self.tAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tBanner" EntityType="Self.tBanner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tContact" EntityType="Self.tContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tNews" EntityType="Self.tNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPhoto" EntityType="Self.tPhoto" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChildrenDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tNews">
+          <Key>
+            <PropertyRef Name="NId" />
+          </Key>
+          <Property Name="NId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NContent" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="NDate" Type="DateTime" Precision="3" />
+          <Property Name="Nfile_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="ChildrenDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tNews" EntityType="Self.tNews" />
+          <EntitySet Name="tBanner" EntityType="ChildrenDatabaseModel.tBanner" />
+          <EntitySet Name="tAbout" EntityType="ChildrenDatabaseModel.tAbout" />
+          <EntitySet Name="tContact" EntityType="ChildrenDatabaseModel.tContact" />
+          <EntitySet Name="tPhoto" EntityType="ChildrenDatabaseModel.tPhoto" />
+          <EntitySet Name="tAdmin" EntityType="ChildrenDatabaseModel.tAdmin" />
+        </EntityContainer>
+        <EntityType Name="tBanner">
+          <Key>
+            <PropertyRef Name="bann_Id" />
+          </Key>
+          <Property Name="bann_Id" Type="Int32" Nullable="false" />
+          <Property Name="bann_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bann_subTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bann_filePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tAbout">
+          <Key>
+            <PropertyRef Name="AId" />
+          </Key>
+          <Property Name="AId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ATitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AContent" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ADate" Type="DateTime" Precision="3" />
+          <Property Name="APeople" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AsubTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="APath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tContact">
+          <Key>
+            <PropertyRef Name="CId" />
+          </Key>
+          <Property Name="CId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CMail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CContent" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tPhoto">
+          <Key>
+            <PropertyRef Name="PId" />
+          </Key>
+          <Property Name="PId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PDate" Type="DateTime" Precision="3" />
+          <Property Name="P_Path" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tAdmin">
+          <Key>
+            <PropertyRef Name="AId" />
+          </Key>
+          <Property Name="AId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ALogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="APwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADate" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChildrenDatabaseModelStoreContainer" CdmEntityContainer="ChildrenDatabaseEntities">
+          <EntitySetMapping Name="tNews">
+            <EntityTypeMapping TypeName="ChildrenDatabaseModel.tNews">
+              <MappingFragment StoreEntitySet="tNews">
+                <ScalarProperty Name="NId" ColumnName="NId" />
+                <ScalarProperty Name="NTitle" ColumnName="NTitle" />
+                <ScalarProperty Name="NContent" ColumnName="NContent" />
+                <ScalarProperty Name="NDate" ColumnName="NDate" />
+                <ScalarProperty Name="Nfile_path" ColumnName="Nfile_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tBanner">
+            <EntityTypeMapping TypeName="ChildrenDatabaseModel.tBanner">
+              <MappingFragment StoreEntitySet="tBanner">
+                <ScalarProperty Name="bann_filePath" ColumnName="bann_filePath" />
+                <ScalarProperty Name="bann_subTitle" ColumnName="bann_subTitle" />
+                <ScalarProperty Name="bann_Title" ColumnName="bann_Title" />
+                <ScalarProperty Name="bann_Id" ColumnName="bann_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAbout">
+            <EntityTypeMapping TypeName="ChildrenDatabaseModel.tAbout">
+              <MappingFragment StoreEntitySet="tAbout">
+                <ScalarProperty Name="APath" ColumnName="APath" />
+                <ScalarProperty Name="AsubTitle" ColumnName="AsubTitle" />
+                <ScalarProperty Name="APeople" ColumnName="APeople" />
+                <ScalarProperty Name="ADate" ColumnName="ADate" />
+                <ScalarProperty Name="AContent" ColumnName="AContent" />
+                <ScalarProperty Name="ATitle" ColumnName="ATitle" />
+                <ScalarProperty Name="AId" ColumnName="AId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tContact">
+            <EntityTypeMapping TypeName="ChildrenDatabaseModel.tContact">
+              <MappingFragment StoreEntitySet="tContact">
+                <ScalarProperty Name="CDate" ColumnName="CDate" />
+                <ScalarProperty Name="CContent" ColumnName="CContent" />
+                <ScalarProperty Name="CTitle" ColumnName="CTitle" />
+                <ScalarProperty Name="CMail" ColumnName="CMail" />
+                <ScalarProperty Name="CPhone" ColumnName="CPhone" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CId" ColumnName="CId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPhoto">
+            <EntityTypeMapping TypeName="ChildrenDatabaseModel.tPhoto">
+              <MappingFragment StoreEntitySet="tPhoto">
+                <ScalarProperty Name="P_Path" ColumnName="P_Path" />
+                <ScalarProperty Name="PDate" ColumnName="PDate" />
+                <ScalarProperty Name="PClass" ColumnName="PClass" />
+                <ScalarProperty Name="PId" ColumnName="PId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAdmin">
+            <EntityTypeMapping TypeName="ChildrenDatabaseModel.tAdmin">
+              <MappingFragment StoreEntitySet="tAdmin">
+                <ScalarProperty Name="ADate" ColumnName="ADate" />
+                <ScalarProperty Name="AName" ColumnName="AName" />
+                <ScalarProperty Name="APwd" ColumnName="APwd" />
+                <ScalarProperty Name="ALogin" ColumnName="ALogin" />
+                <ScalarProperty Name="AId" ColumnName="AId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

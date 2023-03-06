@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ChildrenToDo.Models.tContact>
+
+@{
+    
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int no = 1;
+
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<h2 class="text-center">聯絡我們 表單調查</h2>
+<div style="height:15px"></div>
+<table class="table text-center table-striped table-bordered" style="table-layout: fixed">
+    <tr>
+        <th>
+            編號
+        </th>
+        <th>
+            姓名
+        </th>
+        <th>
+            標題
+        </th>
+        <th>
+            日期
+        </th>
+        <th>
+            功能
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(no++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CTitle)
+            </td>
+            <td>
+                @DateTime.Parse(item.CDate.ToString()).ToString("yyyy  年  M  月  d   日")
+            </td>            
+            <td>
+                @Html.ActionLink("查看", "ContactDetail", new { id = item.CId }, new { @class = "btn btn-primary" }) <span>|</span>
+                @Html.ActionLink("刪除", "ContactDelete", new { id = item.CId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (TempData["msg"] != null)
+{
+    <script>
+        swal("Good job!", "@TempData["msg"]", "success");
+    </script>
+}

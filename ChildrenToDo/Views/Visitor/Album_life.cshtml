@@ -1,0 +1,51 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IPagedList<ChildrenToDo.Models.tPhoto>
+
+@{
+    var lifes = ViewBag.lifes as IEnumerable<ChildrenToDo.Models.tPhoto>;
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int no = 1;
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+
+<div class="container text-center" style="display: inline-block;">
+    <h2>生活紀錄</h2>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="pic col-md-3">
+                <img class="img-fluid" data-toggle="modal" data-target="#myphoto@(no)" src="@item.P_Path" />
+            </div>
+
+            <div class="modal fade" id="myphoto@(no)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">生活紀錄</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="@item.P_Path" class="img-fluid" alt="Alternate Text" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            no = no + 1;
+        }
+    </div>
+</div>
+<div class="text-center" style="margin-top: 20px;">
+    @Html.PagedListPager(Model, Page => Url.Action("Album_life", new { Page }))
+</div>

@@ -1,0 +1,63 @@
+﻿@model ChildrenToDo.Models.tAbout
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<form method="post" enctype="multipart/form-data" action="/Admin/AboutEdit">
+    <h4>編輯 關於我們</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.Label("標題", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div>
+            @Html.EditorFor(model => model.ATitle, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.ATitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("副標題", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div>
+            @Html.EditorFor(model => model.AsubTitle, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.AsubTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("內容", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div>
+            @Html.TextAreaFor(model => model.AContent, new { @class = "form-control", rows = "8" })
+            @Html.ValidationMessageFor(model => model.AContent, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>原始圖片</label>
+        <img src="@Model.APath" style="width:50%" alt="Alternate Text" />
+    </div>
+
+    <div class="form-group">
+        <label for="APath">請選擇上傳圖片(可忽略)</label>
+        <input type="file" class="form-control-file" id="APath" name="APath">
+    </div>
+
+    <input type="hidden" name="id" value="@Model.AId" />
+    <div class="form-group m-auto d-flex">
+        <div>
+            <input type="submit" value="修改" class="btn btn-primary" />
+        </div>
+
+    </div>
+</form>
+
+<div style="margin-top:10px">
+    @Html.ActionLink("返回關於我們列表", "AboutIndex")
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,66 @@
+﻿@model ChildrenToDo.Models.tContact
+
+@{
+    ViewBag.Title = "ContactDetail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>連絡表單細節</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            填表人姓名
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CName)
+        </dd>
+
+        <dt>
+            聯絡方式
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPhone)
+        </dd>
+
+        <dt>
+            信箱
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CMail)
+        </dd>
+
+        <dt>
+            標題
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CTitle)
+        </dd>
+
+        <dt>
+            內容
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CContent)
+        </dd>
+
+        <dt>
+            填表日期
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("返回連絡表單列表", "ContactIndex") <span>|</span>
+    @Html.ActionLink("刪除此表單","ContactDelete", new { id = Model.CId })
+</p>

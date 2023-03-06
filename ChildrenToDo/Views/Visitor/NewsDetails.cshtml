@@ -1,0 +1,66 @@
+﻿@model ChildrenToDo.Models.tNews
+
+@{
+    ViewBag.Title = "NewsDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var file = ViewBag.file as IEnumerable<ChildrenToDo.Models.tNews>;
+
+    string no = "無";
+}
+
+
+<div class="text-center">
+    <h4>最新消息</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            標題
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NTitle)
+        </dd>
+
+        <dt>
+            內容
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NContent)
+        </dd>
+
+        <dt>
+            日期
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NDate)
+        </dd>
+
+        <dt>
+            附件檔案
+        </dt>
+
+        @if (Model.Nfile_path.Contains("無"))
+        {
+            <dd>
+                無
+            </dd>
+        }
+        else
+        {
+            <dd>
+                <a href="@Model.Nfile_path">下載</a>
+            </dd>
+        }
+
+
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("返回消息列表", "News")
+</p>

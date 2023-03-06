@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ChildrenToDo.Models.tAbout>
+
+@{
+    
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int no = 1;
+
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<h2>關於我們</h2>
+<div style="height:15px"></div>
+<table class="newstable table-bordered text-center" style="table-layout: fixed">
+    <tr>        
+        <th style="width:15%">
+            標題
+        </th>
+        <th style="width:30%">
+            內容
+        </th>
+        <th style="width:15%">
+            最後修改日期
+        </th>
+        <th style="width:15%">功能</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>            
+            <td>
+                @Html.DisplayFor(modelItem => item.ATitle)
+            </td>
+            <td>
+                @if (item.AContent.Length > 20)
+                {
+                    <span style="overflow:hidden; max-height:150px; display: block">
+                        @Html.DisplayFor(modelItem => item.AContent)
+                    </span>
+                }
+                else
+                {
+                    <span style="overflow:hidden; max-height:50px; display: block">
+                        @Html.DisplayFor(modelItem => item.AContent)
+                    </span>
+                }
+            </td>
+            <td>
+                @DateTime.Parse(item.ADate.ToString()).ToString("yyyy  年  M  月  d   日")
+            </td>            
+            <td>
+                @Html.ActionLink("修改", "AboutEdit", new { id = item.AId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (TempData["msg"] != null)
+{
+    <script>
+        swal("Good job!", "@TempData["msg"]", "success");
+    </script>
+}
